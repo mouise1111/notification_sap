@@ -1,12 +1,15 @@
 sap.ui.define([
         "sap/ui/core/mvc/Controller",
-        "sap/ui/core/UIComponent"
+        "sap/ui/core/UIComponent",
+        "sap/ui/model/json/JSONModel",
+        "sap/ui/model/Filter",
+        "sap/ui/model/FilterOperator",
     ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      * @param {typeof sap.ui.core.UIComponent} UIComponent
      */
-    function (Controller, UIComponent) {
+    function (Controller, UIComponent, JSONModel, Filter, FilterOperator) {
         "use strict";
 
         var oModel;
@@ -119,6 +122,42 @@ sap.ui.define([
                 });
 
                 //#endregion
+            
+                var userBox = this.byId("usersBox");
+
+                oModel.read("/ZC_NOTIFICATION", {
+                    success: function(oData) {
+                      // List of users
+                      var aNotifications = oData.results;
+                      var aUsers = [];
+                      aNotifications.forEach(function(notification) {
+                        if (aUsers.indexOf(notification.CreatedByUser) === -1) {
+                          aUsers.push(notification.CreatedByUser);
+                        }
+                      });
+            
+                      var oNotificationsByUser = {};
+                      aUsers.forEach(function(user) {
+                        var aFilteredNotificationss = aNotifications.filter(function(notification) {
+                          return notification.CreatedByUser === user;
+                        });
+                        oNotificationsByUser[user] = aFilteredNotificationss;
+                      });
+                      aUsers.forEach(function(user) {
+                        var iNotificationsCount = oNotificationsByUser[user].length;
+                        var sTitle = user + " : " + iNotificationsCount;
+                        var oText = new sap.m.Text({ text: sTitle }); // Create a new Text control with the title
+                        userBox.addItem(oText); // Add the Text control to the VBox
+                      });
+                      userBox.setModel(new JSONModel(oNotificationsByUser));
+            
+            
+                    },
+                    error: function(oError) {
+                      // Handle error if necessary
+                    }
+                  
+                  });
             },
 
             onPress: function () {
