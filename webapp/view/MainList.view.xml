@@ -1,0 +1,57 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="notification.controller.MainList"
+  displayBlock="true">
+  <Page title="My Page">
+    <content>
+      <Text id="notiftype" />
+      <!-- <Table id="NotifTable" items="{/ZC_NOTIFICATION}" growing="true" growingThreshold="25"> -->
+      <Table id="NotifTable" items="{
+        path: '/ZC_NOTIFICATION',
+        sorter: [
+        {
+          path: 'CreationDate',
+          descending: 'true'
+        }]
+      }" growing="true" growingThreshold="25">
+        <headerToolbar>
+          <OverflowToolbar>
+            <Title text="{i18n>tableTitle}" />
+            <ToolbarSpacer />
+            <Button tooltip="Create a notification" icon="sap-icon://add" press="onCreate" text="Create" />
+            <SearchField width="20%" search="onSearch" />
+            <Button tooltip="Sort" icon="sap-icon://sort" press="onOpenSortDialog" />
+            <Button tooltip="Group" icon="sap-icon://group-2" press="onGroup" />
+          </OverflowToolbar>
+        </headerToolbar>
+        <columns>
+          <Column>
+            <Text text="Notification ID" />
+          </Column>
+          <Column>
+            <Text text="Text" />
+          </Column>
+          <Column>
+            <Text text="Notification type" />
+          </Column>
+          <Column>
+            <Text text="Created on" />
+          </Column>
+          <Column>
+            <Text text="Created by" />
+          </Column>
+        </columns>
+        <items>
+          <ColumnListItem type="Navigation" press="onPressItem">
+            <cells>
+              <ObjectIdentifier title="{MaintenanceNotification}" />
+              <Text text="{NotificationText}" />
+              <!-- <Text text="{MaintPriority}"/> -->
+              <Text text="{NotificationType}" />
+              <Text text="{CreationDate}" />
+              <Text text="{CreatedByUser}" />
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+    </content>
+  </Page>
+</mvc:View>

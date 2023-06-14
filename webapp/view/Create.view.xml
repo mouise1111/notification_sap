@@ -1,0 +1,25 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="notification.controller.Create" displayBlock="true">
+  <Page title="Create Notification">
+    <content>
+      <!-- <VBox justifyContent="Center" alignItems="Center">
+        <Label text="Notification Text"/>
+        <Input value="{/NotificationText}"/>
+            <Label text="Notification Type"/>
+        <Input value="{/NotificationType}"/>
+        <Button text="Create" press="onCreate"/>
+      </VBox> -->
+      <sap.ui.layout.form:SimpleForm id="form" editable="true" layout="ResponsiveGridLayout"
+        xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core">
+        <sap.ui.layout.form:content>
+          <sap.ui.core:Title id="title2" text="Title" />
+          <Label text="Notification Text" id="text" />
+          <Input width="100%" id="input_text"  />
+          <Label text="Notification Type" id="Type" />
+          <Input width="100%" id="input_type"  />
+        </sap.ui.layout.form:content>
+        <Button text="Create" press="onCreate" />
+      </sap.ui.layout.form:SimpleForm>
+    </content>
+  </Page>
+
+</mvc:View>

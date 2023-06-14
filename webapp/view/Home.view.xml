@@ -1,0 +1,36 @@
+<mvc:View controllerName="notification.controller.Home" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:f="sap.f" xmlns="sap.m" xmlns:card="sap.f.cards">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <VBox alignItems="Center" class="sapUiSmallMarginTopBottom">
+                <!-- <Button text="Go to My New View" press=".onPress" id="dummy"/> -->
+                <Button text="See all notifications" icon="sap-icon://list" press=".navigateToList" />
+                <Button text="Create a notification" press="onCreate" />
+            </VBox>
+            <VBox>
+            </VBox>
+
+            <f:Card class="sapUiMediumMargin" width="300px">
+                <f:header>
+                    <card:Header title="Notifications Overview" subtitle="Total Notifications by Type" />
+                </f:header>
+                <f:content>
+                    <!-- <sap.m.BusyIndicator id="busyIndicator" size="Large" /> -->
+                    <BusyIndicator size="1.6rem" class="sapUiMediumMarginBegin" />
+                    <List id="types" />
+                </f:content>
+            </f:Card>
+
+            <f:Card class="sapUiMediumMargin" width="300px">
+                <f:header>
+                    <card:Header title="Total notifications" iconSrc="sap-icon://number-sign" />
+                </f:header>
+                <f:content>
+                    <VBox class="sapUiSmallMargin" id="id4HBox" alignContent="Center" justifyContent="Center">
+                        <Label id="totalNotifications" class="labelTotalOrders" />
+                    </VBox>
+                </f:content>
+            </f:Card>
+
+        </content>
+    </Page>
+</mvc:View>

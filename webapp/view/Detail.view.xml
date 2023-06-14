@@ -1,0 +1,17 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="notification.controller.Detail">
+    <Page title="Notification Detail">
+        <content>
+            <ObjectHeader title="{NotificationText}" number="{MaintenanceNotification}" />
+            <VBox class="detailAttributesBox sapUiMediumMargin" alignItems="Start">
+                <ObjectAttribute title="Priority" text="{MaintPriority}" />
+                <ObjectAttribute title="Notification Type" text="{NotificationType}" />
+                <ObjectAttribute title="Created By" text="{CreatedByUser}" />
+                <ObjectAttribute title="Creation Date" text="{ path: 'CreationDate', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' } }" />
+                <ObjectAttribute title="Last Changed By" text="{LastChangedByUser}" />
+                <ObjectAttribute title="Last Change Date" text="{ path: 'LastChangeDate', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' } }" />
+                <ObjectAttribute title="Work Center" text="{WorkCenterInternalID}" />
+            </VBox>
+            <!-- Add more ObjectAttributes for other properties as needed -->
+        </content>
+    </Page>
+</mvc:View>
